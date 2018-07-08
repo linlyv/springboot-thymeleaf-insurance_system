@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"></meta>
+
+    <title> 个人中心</title>
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet"></link>
+    <link th:href="@{css/font-awesome.css?v=4.4.0}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/animate.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/style.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/aboutme.css}" rel="stylesheet" type="text/css" ></link>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+  
+	
+	
+	<script th:src="@{js/utils.js}" type="text/javascript"></script>
+</head>
+<body >
+	 <div class="container">
+    	<div class="col-lg-6 col-lg-offset-3" >
+    	
+    		<!-- ===== vCard Navigation ===== -->
+    		<div class="row w">
+    			<div class="col-md-4" style="opacity: 0.8;">
+    				
+    				<a type="button"  class="glyphicon glyphicon-chevron-left " href="javascript:;" onclick="javascript:history.back();" style="font-size: 40px;text-shadow: white 5px 3px 3px;">
+</a>
+					<ul class="nav nav-tabs nav-stacked" id="myTab">
+					  <li class="active"><a href="#about">关于</a></li>
+					  <li><a href="#profile">信息维护</a></li>
+					  <li><a href="#portfolio">数据统计</a></li>
+					  <li><a href="#contact">联系方式</a></li>
+					</ul>    			
+				</div><!-- col-md-4 -->
+
+    		<!-- ===== vCard Content ===== -->
+    			<div class="col-md-8">
+	    			<div class="tab-content">
+	    			
+	    			  <!-- ===== First Tab ===== -->
+					  <div class="tab-pane active" id="about">
+					  	<h3>项目信息</h3>
+					  	<h5>Web Designer</h5>
+					  	<hr></hr>
+					  	<p>基于springboot+mybatis+MySQL+thymeleaf的保单管理后台</p> 
+					  	<p>基本实现一些数据的增删改查</p>
+					  	<a href="https://github.com/linlyv">https://github.com/linlyv</a>
+					  	<p class="pull-right red"><i class="icon-heart"></i></p>
+					  </div><!-- tab about -->
+					  
+	    			  <!-- ===== Second Tab ===== -->
+					  <div class="tab-pane" id="profile">
+					  	<h4><i class="icon-briefcase"></i> 账号信息</h4>
+					  	<p class="sm">
+					  		<grey>登录名：</grey> | <span th:text="${name}"></span><br/>
+					  		<grey>修改密码</grey> | <a class="glyphicon glyphicon-hand-up" id="newpasswd" href="#myModal-newpasswd"  role="button"  data-toggle="modal"></a><br/>
+					  	</p>
+					  
+						  <h4><i class="icon-file-text-alt"></i>个人信息</h4>
+					  	<p class="sm">
+					  		<grey>性别</grey> | <span th:text="${sex}"></span><br/>
+					  		<grey>年龄</grey> | <span th:text="${age}"></span><br/>
+					  	</p>
+					  	
+						  <h4><i class="icon-trophy"></i>其他信息</h4>
+					  	<p class="sm">
+					  		<grey>注册时间</grey> | <span th:text="${time}"></span><br/>
+					  		<grey>等级</grey> | <span th:text="${grade}"></span><br/>
+					  	</p>
+					  </div><!-- Tab Profile -->
+					  
+	    			  <!-- ===== Third Tab ===== -->
+					  <div class="tab-pane" id="portfolio">
+						  <div class="row">
+							  <div class="col-xs-6">
+							   <p class="sm" style="margin-top: 20px;">
+							    <grey>完成保单数量：</grey> | <span th:text="${policynum}" ></span><br/>
+							  	</p>
+							  </div><!-- col-xs-6 -->
+							 
+						  </div><!-- row -->
+						  
+						  
+					  </div><!-- /Tab Portfolio -->
+					  
+	    			  <!-- ===== Fourth Tab ===== -->
+					  <div class="tab-pane" id="contact">
+						  <h4>Contact Information</h4>
+						  <hr></hr>
+						  <div class="row">
+							  <div class="col-xs-6">
+								  <p class="sm">
+								  	<i class="glyphicon glyphicon-globe"></i> <a href="https://github.com/linlyv">https://github.com/linlyv</a><br></br>
+									<i class="glyphicon glyphicon-envelope"></i> 1528365723@qq.com  
+								  </p>
+							  </div><!-- col-xs-6 -->
+							  
+							  
+						  </div><!-- row -->
+						  
+						  
+						 
+					  </div><!-- Tab Contact -->
+					  
+					</div><!-- Tab Content -->
+    			</div><!-- col-md-8 -->
+    		</div><!-- row w -->
+    	</div><!-- col-lg-6 -->
+    </div><!-- /.container -->
+<div class="modal fade" id="myModal-newpasswd" tabindex="-1" role="dialog" aria-labelledby="modalnewpasswd">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="modalnewpasswd">修改密码</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form3">
+                   <div class="form-group">
+                          <label>用户名</label>
+                          <input type="name" name="name" id="username" placeholder="请输入您注册的用户名" class="form-control" th:value="${name}"></input>
+                          <label>旧密码</label>
+                          <input type="password" name="oldpassword" id="oldpassword" placeholder="请输入旧密码" class="form-control"></input>
+                          <label>新密码</label>
+                          <input type="password" name="newpassword" id="newpassword" placeholder="请输入新密码" class="form-control"></input>
+
+                   </div>
+				   <div>       
+                          <h2 id="p3" class="text-warning text-center"></h2>  
+                     </div>
+                     
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closemodal" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary"  onclick="newpasswd()">提交</button>
+            </div>
+        </div>
+    </div>
+</div>
+	
+	
+	
+    <script th:src="@{js/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/bootstrap.min.js}" type="text/javascript"></script>
+   <script>
+	$('#myTab a').click(function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})	
+	</script> 
+</body>
+</html>

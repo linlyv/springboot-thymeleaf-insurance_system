@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"></meta>
+
+    <title> 注册</title>
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet"></link>
+    <link th:href="@{css/font-awesome.css?v=4.4.0}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/animate.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/style.css}" rel="stylesheet" type="text/css"></link>
+    <link th:href="@{css/login.css}" rel="stylesheet" type="text/css" ></link>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+   <script th:src="@{js/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/bootstrap.min.js}" type="text/javascript"></script>
+	
+	
+	<script th:src="@{js/utils.js}" type="text/javascript"></script>
+</head>
+<body class="signin">
+	<div class="signinpanel">
+        <div class="row">
+              <div class="col-sm-12">
+                      <form role="form" id="form" >
+                          <div class="form-group">
+                              <label>用户名</label>
+                              <input type="name" name="name" id="name" maxlength="15" placeholder="请输入用户名" class="form-control"></input>
+                                     
+                              <label>密码</label>
+                              <input type="password" name="password" id="password" maxlength="16" placeholder="请输入密码" class="form-control"></input>
+							
+		                      <label  for="addpolicyname">
+		                        	性别
+		                      </label>
+		                        <select name="sex"  class="form-control">            
+		                          <option >男</option>
+		                          <option>女</option>		                         
+		                       </select>
+		                       <select name="age"  class="form-control" id="select1" onload="setage()">            
+		                         		                         
+		                       </select>
+								
+                          </div>
+                         
+                       
+                      </form>
+ 						<div>
+                               <button class="btn btn-success btn-block" onclick="addPOST()" type="submit"><strong>注册业务员</strong>
+                              </button>
+                              <a href="index.html" class="text-success">已有账号?点此登录</a>
+                             <a id="p1" th:href="@{http://127.0.0.1:8080/login}" class="text-warning text-center"></a>
+                       </div>
+              </div>
+         </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; root
+            </div>
+        </div>
+   </div>
+	 <script type="text/javascript">
+		 $(document).ready(function() {	 
+			 var ages=[18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70];
+			 for(var i in ages){
+					$("#select1").append("<option >"+ages[i]+"</option>");
+				}
+		 })
+	 </script>
+   
+</body>
+</html>

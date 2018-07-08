@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: zspt-insurance-lgh03
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: 15283_000
+Implementation-Vendor-Id: com.gh003
+Build-Jdk: 1.8.0_144
+Implementation-URL: http://projects.spring.io/spring-boot/zspt-insuran
+ ce-lgh03/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

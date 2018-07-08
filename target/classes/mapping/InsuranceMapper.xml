@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gh003.insurance.dao.InsuranceMapper" >
+  <resultMap id="BaseResultMap" type="com.gh003.insurance.entity.Insurance" >
+    <id column="orderid" property="orderid" jdbcType="INTEGER" />
+    <result column="policyholderid" property="policyholderid" jdbcType="VARCHAR" />
+    <result column="policyholder" property="policyholder" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="policyname" property="policyname" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DECIMAL" />
+    <result column="effecttime" property="effecttime" jdbcType="TIMESTAMP" />
+    <result column="failuretime" property="failuretime" jdbcType="TIMESTAMP" />
+    <result column="saler" property="saler" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderid, policyholderid, policyholder, phone, policyname, cost, effecttime, failuretime, 
+    saler
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from insurance
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </select>
+ 
+   <select id="selectBySalerId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from insurance
+    where saler = #{saler,jdbcType=INTEGER}
+  </select>
+ 
+  <select id="selectAllInsurance" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from insurance
+  </select>
+  
+  
+  
+  
+  <insert id="insert" parameterType="com.gh003.insurance.entity.Insurance" >
+    insert into insurance (orderid, policyholderid, policyholder, 
+      phone, policyname, cost, 
+      effecttime, failuretime, saler
+      )
+    values (#{orderid,jdbcType=INTEGER}, #{policyholderid,jdbcType=VARCHAR}, #{policyholder,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{policyname,jdbcType=VARCHAR}, #{cost,jdbcType=DECIMAL}, 
+      #{effecttime,jdbcType=TIMESTAMP}, #{failuretime,jdbcType=TIMESTAMP}, #{saler,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gh003.insurance.entity.Insurance" >
+    insert into insurance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        orderid,
+      </if>
+      <if test="policyholderid != null" >
+        policyholderid,
+      </if>
+      <if test="policyholder != null" >
+        policyholder,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="policyname != null" >
+        policyname,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="effecttime != null" >
+        effecttime,
+      </if>
+      <if test="failuretime != null" >
+        failuretime,
+      </if>
+      <if test="saler != null" >
+        saler,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="policyholderid != null" >
+        #{policyholderid,jdbcType=VARCHAR},
+      </if>
+      <if test="policyholder != null" >
+        #{policyholder,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="policyname != null" >
+        #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="effecttime != null" >
+        #{effecttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failuretime != null" >
+        #{failuretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saler != null" >
+        #{saler,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gh003.insurance.entity.Insurance" >
+    update insurance
+    <set >
+      <if test="policyholderid != null" >
+        policyholderid = #{policyholderid,jdbcType=VARCHAR},
+      </if>
+      <if test="policyholder != null" >
+        policyholder = #{policyholder,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="policyname != null" >
+        policyname = #{policyname,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="effecttime != null" >
+        effecttime = #{effecttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="failuretime != null" >
+        failuretime = #{failuretime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saler != null" >
+        saler = #{saler,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gh003.insurance.entity.Insurance" >
+    update insurance
+    set policyholderid = #{policyholderid,jdbcType=VARCHAR},
+      policyholder = #{policyholder,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      policyname = #{policyname,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DECIMAL},
+      effecttime = #{effecttime,jdbcType=TIMESTAMP},
+      failuretime = #{failuretime,jdbcType=TIMESTAMP},
+      saler = #{saler,jdbcType=INTEGER}
+    where orderid = #{orderid,jdbcType=INTEGER}
+  </update>
+</mapper>

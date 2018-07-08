@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"></meta>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+		<meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no"></meta>
+		<title>用户管理主页</title>
+		<link  th:href="@{css/samples-styles.css}" rel="stylesheet"></link>
+		<link  th:href="@{css/bootstrap.min.css}" rel="stylesheet"></link>
+        <link  th:href="@{css/bootstrap-maizi.css}" rel="stylesheet"></link>
+		
+	
+		<script th:src="@{js/jquery.min.js}" type="text/javascript"></script>
+		<script th:src="@{js/bootstrap.min.js}"></script>
+		<script th:src="@{js/utils.js}" type="text/javascript"></script>
+		<style type="text/css">
+			body {background-color:#FFFFFf;}
+			tr:hover{ background-color: #ffc; background-color: rgba(230, 127, 34, 0.2); }
+			#activeli{background-color: blue;}
+		</style>
+	</head>
+	
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand">人员管理</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              
+                <li ><a th:href="@{toPolicyRoot?(name=${name}, salerid=${salerid})}">&nbsp;&nbsp;保单管理</a></li>
+                <li class="active"  id ="activeli" style="background-color: blue"><a th:href="@{home?(name=${name}, salerid=${salerid})}">&nbsp;&nbsp;用户管理</a></li>
+               
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <span  >欢迎你，管理员！</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dLabel">
+                         <li><a href="/about">&nbsp;&nbsp;个人中心</a></li>
+                       <li><a th:href="@{loginout?(name=${name})}">&nbsp;&nbsp;退出</a></li>
+                    </ul>
+                </li>
+                
+            </ul>
+        </div>
+        <!--导航-->
+
+    </div>
+</nav>
+<div class="container">
+	<div class="row">
+		
+		
+			<div class="input-group">
+				
+				<input class="form" type="searc" id="input-filter1" size="15" placeholder="输入用户名查找" onkeyup="find()" ></input>
+				
+				<div class="input-group-addon">
+					<button onclick="reflash()"  type="button">&nbsp;刷新</button>
+				</div>
+			</div>
+			
+			
+			<table class="">
+				<thead>
+					<tr>
+	                <th scope="col" title="President Number">id</th>
+	                <th scope="col">用户名</th>
+	                 <th scope="col">性别</th>
+	                <th scope="col">年龄</th>
+	                <th scope="col">密码</th>
+	                <th scope="col">注册时间</th>
+	                <th scope="col">操作</th>
+			        </tr>
+				</thead>
+				
+				<tbody id="idData1">	
+			            
+			    </tbody>
+			        
+			</table>
+			<div id="barcon1" name="barcon">
+				
+			</div>
+			<h2  onload="goPage1(1)"></h2>
+			
+			
+
+		 <div class="modal fade" id="modal-container-927525" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>							
+						</div>
+						<div class="modal-body">
+							确定要删除吗？
+						</div>
+						<div class="modal-footer">
+							 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="todelete(0)">取消</button> <button type="button" class="btn btn-primary" onclick="todelete(1)" data-dismiss="modal">确定</button>
+						</div>
+					</div>
+					
+				</div>
+				
+		</div>
+		
+	</div>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    Copyright&nbsp;©&nbsp;2018&nbsp;&nbsp;1571物联网&nbsp;&nbsp;粤ICP备2015127003号
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+	<script type="text/javascript">
+		
+	    $(document).ready(function() {
+	    	
+			$.ajax({
+				url: "http://2015127.frp3.chuantou.org/findAllUsers"
+			}).then(function(data) {
+				console.log("success");
+				console.log(typeof(data));
+				var mydata = data;
+				console.log(data.length);
+				var i=0;
+				for(var i in mydata)
+					$("#idData1").append("<tr><td>"+data[i].id+"</td><td>"+data[i].name+"</td><td>"+data[i].sex+"</td><td>"+data[i].age+"</td><td>"+data[i].password+"</td><td>"+
+							parseDate(data[i].time)+"</td>"+caozuohead+shanchu_btn+updatepasswd_btn+"</tr>");
+					console.log(typeof(parseDate(data[i].time)));
+			});
+			setTimeout("goPage1(1)","600"); 
+	    	
+	       
+
+	    });
+	   
+	    
+
+	</script>
+		
+</body>
+</html>

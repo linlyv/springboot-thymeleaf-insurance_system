@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title> - 注册登录</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+     <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
+</head>
+
+<body class="signin">
+    <div class="signinpanel">
+        <div class="row">
+              <div class="col-sm-12">
+                      <form role="form" id="form">
+                          <div class="form-group">
+                              <label>用户名</label>
+                              <input type="name" name="name" id="name" placeholder="请输入您注册的用户名" class="form-control">
+                                     
+                              <label>密码</label>
+                              <input type="password" name="password" id="password" placeholder="请输入密码" class="form-control">
+
+                          </div>
+                       
+                      </form>
+ 						<div>
+ 						
+							<button class="btn btn-success btn-block" onclick="addPOST()" type="submit"><strong>登录</strong></button>
+                            
+                             <h2 id="p1" class="text-warning text-center"></h2>
+                             <a href="addU" class="text-success">没有账号?点此注册</a>
+                       </div>
+              </div>
+         </div>
+        <div class="signup-footer">
+            <div class="pull-left">
+                &copy; root
+            </div>
+        </div>
+    </div>
+	
+	
+	<!-- 自定义js function -->
+	<script type="text/javascript">
+	var baseUrl="http://2015127.frp3.chuantou.org/";
+	<!-- ui -->
+	
+	<!-- addPOST -->
+	 function addPOST()
+	  {	  
+	   console.log($("#form").serialize()); // FirstName=Bill&LastName=Gates
+	   $.ajax({  
+        type : "POST",
+		xhrFields: {
+           withCredentials: true
+       },
+        crossDomain: true,
+        url : baseUrl+"/login",
+		data: $("#form").serialize(),
+		dataType: 'json',
+
+        success : function(data){ 
+			
+			console.log("success"); 
+			console.log(data); 
+			if(data==1){
+				document.getElementById("p1").innerHTML="登录成功";
+				location.href="/home";
+			}
+			else if(data==2){
+				//window.alert("密码错误");
+				document.getElementById("p1").innerHTML="密码错误";
+			}
+			else if(data==3){
+				document.getElementById("p1").innerHTML="用户名不存在";
+			}
+			else if(data==4){
+				document.getElementById("p1").innerHTML="此账号已注销";
+			}
+			
+        },  
+        error:function(){  
+		console.log("error");
+		window.alert("提交数据出错");
+		 
+        }  
+    });   
+	  
+	  }
+    
+	 
+	</script>
+	
+	
+	
+</body>
+
+</html>
