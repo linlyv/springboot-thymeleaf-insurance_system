@@ -11,3 +11,6 @@ spring.datasource.druid.password=admin
 3、把user.sql和insurance.sql文件导入你的数据库
 4、运行成功后浏览器访问你的本机ip加端口号8080即可，可以用管理员登录，其中一个账号密码都是root。
 5、此系统实现了保单和账户的增删改查，还有一个小小的排序功能
+
+
+更改ip的方法，只需要将index.html 和 static/js 目录下的utils.js 里的baseUrl的值改为你电脑的ip即可。
