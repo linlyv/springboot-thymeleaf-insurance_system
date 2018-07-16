@@ -23,5 +23,5 @@ spring.datasource.druid.password=admin
 更改ip的方法，只需要将index.html 和 static/js 目录下的utils.js 里的baseUrl的值改为你电脑的ip即可。
 
 
-![image](http://github.com/linlyv/springboot-thymeleaf-insrance_system/登录.gif)
+![image](http://github.com/linlyv/springboot-thymeleaf-insrance_system/login.gif)
 
