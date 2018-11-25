@@ -1,9 +1,9 @@
 
 
-# 后端技术sprintboot+MySQL+mybatis 前端使用boostrap框架+thymeleaf模板
+# 后端技术sprintboot+thymeleaf+mybatis 前端使用boostrap框架，数据库MySQL
 
 
-1、这是一个简单保单管理系统，使用eclipse导入工程（maven）运行测试，
+1、这是一个简单得到保单后台管理系统。
 
 2、需要一个MySQL数据库，在application.properties文件里配置数据连接，如下：
 
